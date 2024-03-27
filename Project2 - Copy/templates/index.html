@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fashion MNIST Image Classification</title>
+
+</head>
+<body>
+    <h1>Fashion MNIST Image Classification</h1>
+    <form id="uploadForm" action="/" method="POST" enctype="multipart/form-data">
+        <label for="image" class="choose-btn">Choose Image</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+        <button type="submit" class="upload-btn">Upload and Classify</button>
+    </form>
+    {% if predictions %}
+    <ul>
+        {% for label, percentage in predictions[:1] %}
+        <li>
+            <span>{{ label }} - {{ percentage }}%</span>
+            <div class="chart-container">
+                <div class="chart">
+                    <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></span>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% endif %}
+
+
+
+    <script>
+        document.getElementById('image').addEventListener('change', function() {
+            document.getElementById('alert').style.display = 'block';
+            setTimeout(function() {
+                document.getElementById('alert').style.display = 'none';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
